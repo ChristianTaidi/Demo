@@ -33,13 +33,32 @@ public class Advertisement{
     @Column(name = "gardenSize")
     private Long gardenSize;
 
+    @Transient
     private List<Picture> pictures;
 
+    @Column(name = "dateNotRelevant")
+    private Date dateNotRelevant;
 
-    private Date dateCreated;
 
     private int score;
 
+    public Advertisement(){
+        //JPA needs this default constructor also used for advertisements without pictures or descriptions
+
+    }
+
+    public Advertisement(String description){
+        if(description!=null)
+            this.description=description;
+
+    }
+
+    public Advertisement(String description, HouseType type, Long houseSize, Long gardenSize){
+        this.description=description;
+        this.type=type;
+        this.houseSize=houseSize;
+        this.gardenSize=gardenSize;
+    }
 
     public Long getId() {
         return this.id;
@@ -91,6 +110,9 @@ public class Advertisement{
     public void balanceScore() {
         if(this.score>100){
             this.score=100;
+        }
+        if(this.score<40){
+            dateNotRelevant= new Date();
         }
     }
 }

@@ -16,7 +16,7 @@ public class ScoreComputingServiceImpl implements ScoreComputingService {
 
     private static final int SCORE_HD_PIC=20;
     private static final int SCORE_NOT_HD_PIC=10;
-    private static final int SCORE_HAS_NO_PIC=-5;
+    private static final int SCORE_HAS_NO_PIC=-10;
     private static final int SCORE_HAS_KEYWORD=5;
     private static final int SCORE_HAS_DESCRIPTION=5;
     private static final int SCORE_HOUSE_50=20;
@@ -41,7 +41,9 @@ public class ScoreComputingServiceImpl implements ScoreComputingService {
     public void computeAll(){
         ads=advertisements.findAll();
         for(Advertisement currentAd:ads){
-            if(computePics(currentAd) && computeDesc(currentAd)){
+            boolean hasPic= computePics(currentAd);
+            boolean hasDesc= computeDesc(currentAd);
+            if(hasPic && hasDesc){
                 if (currentAd.isComplete()){
                     currentAd.addScore(SCORE_COMPLETE_ADD);
                 }

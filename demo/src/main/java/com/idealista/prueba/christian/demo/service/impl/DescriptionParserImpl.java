@@ -1,9 +1,10 @@
 package com.idealista.prueba.christian.demo.service.impl;
 
+import com.idealista.prueba.christian.demo.service.DescriptionParser;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DescriptionParserImpl {
+public class DescriptionParserImpl implements DescriptionParser {
 
     private static final String KEYWORD_LUMINOSO="luminoso";
     private static final String KEYWORD_NUEVO="nuevo";
@@ -15,19 +16,19 @@ public class DescriptionParserImpl {
     public int parseDescription(String description){
         int count = 0;
         description=description.toLowerCase();
-        if(description.indexOf(KEYWORD_ATICO)>0){
+        if(description.indexOf(KEYWORD_ATICO)>=0){
             count++;
         }
-        if (description.indexOf(KEYWORD_LUMINOSO)>0){
+        if (description.indexOf(KEYWORD_LUMINOSO)>=0){
             count++;
         }
-        if(description.indexOf(KEYWORD_NUEVO)>0){
+        if(description.indexOf(KEYWORD_NUEVO)>=0){
             count++;
         }
-        if(description.indexOf(KEYWORD_CENTRICO)>0){
+        if(description.indexOf(KEYWORD_CENTRICO)>=0){
             count++;
         }
-        if(description.indexOf(KEYWORD_REFORMADO)>0){
+        if(description.indexOf(KEYWORD_REFORMADO)>=0){
             count++;
         }
         return count;

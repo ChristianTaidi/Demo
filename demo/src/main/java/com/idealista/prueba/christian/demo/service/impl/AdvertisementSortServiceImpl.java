@@ -18,7 +18,7 @@ public class AdvertisementSortServiceImpl implements AdvertisementSortService {
         return advertisements.findAdvertisementByScoreIsLessThanEqual(superiorLimit);
     }
 
-    public List<Advertisement> getScoresGreaterThan(int inferiorLimit){
-        return advertisements.findByScoreGreaterThanEqual(inferiorLimit);
+    public List<Advertisement> getScoresGreaterThan(int relevant){
+        return advertisements.findAdvertisementByScoreGreaterThanEqual(relevant);
     }
 }
