@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "advertisement")
-public class Advertisement implements Comparable{
+public class Advertisement{
 
     /**
      * Constants used to represent how may points are added depending on the pictures of the ad
@@ -33,7 +33,7 @@ public class Advertisement implements Comparable{
     @Column(name = "gardenSize")
     private Long gardenSize;
 
-
+    private List<Picture> pictures;
 
 
     private Date dateCreated;
@@ -49,19 +49,8 @@ public class Advertisement implements Comparable{
         this.score+=addToScore;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        Advertisement ad = (Advertisement) o;
-        if (this.getScore() > ad.getScore()){
-            return 1;
-        }else if(this.getScore()< ad.getScore()){
-            return -1;
-        }else{
-            return 0;
-        }
-    }
 
-    private int getScore() {
+    public int getScore() {
         return this.score;
     }
 
@@ -79,6 +68,10 @@ public class Advertisement implements Comparable{
 
     public boolean hasHouseSize() {
         return this.houseSize!=0;
+    }
+
+    public void setPics(List<Picture> pics){
+        this.pictures=pics;
     }
 
 
