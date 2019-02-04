@@ -14,11 +14,13 @@ public class AdvertisementSortServiceImpl implements AdvertisementSortService {
     @Autowired
     AdvertisementRepository advertisements;
 
-    public List<Advertisement> getScoresLessThan(int superiorLimit){
-        return advertisements.findAdvertisementByScoreIsLessThanEqual(superiorLimit);
+    public List<Advertisement> getNotRelevantAds(){
+        List<Advertisement> ads =advertisements.findByRelevantFalse();
+        return ads;
     }
 
-    public List<Advertisement> getScoresGreaterThan(int relevant){
-        return advertisements.findAdvertisementByScoreGreaterThanEqual(relevant);
+    public List<Advertisement> getRelevantAds(){
+        List<Advertisement> ads =advertisements.findByRelevantTrue();
+        return ads;
     }
 }

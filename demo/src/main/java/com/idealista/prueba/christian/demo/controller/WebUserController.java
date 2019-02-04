@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class WebUserController {
 
-    private static final int SCORE_RELEVANT=40;
+
 
     @Autowired
     ScoreComputingService computingService;
@@ -29,7 +29,7 @@ public class WebUserController {
     @RequestMapping(value="/advertisements/relevant", method = RequestMethod.GET)
     public @ResponseBody List<Advertisement> orderByRelevant(){
         computingService.computeAll();
-        List<Advertisement> ads= advertisementSortService.getScoresGreaterThan(SCORE_RELEVANT);
+        List<Advertisement> ads= advertisementSortService.getRelevantAds();
         ads.sort(comparator);
         return ads;
     }

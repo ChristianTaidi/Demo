@@ -11,7 +11,7 @@ public interface AdvertisementRepository extends CrudRepository <Advertisement,L
 
     List<Advertisement> findAll();
 
-    List<Advertisement> findAdvertisementByScoreGreaterThanEqual(int inferiorLimit);
+    List<Advertisement> findByRelevantTrue();
 
-    List<Advertisement> findAdvertisementByScoreIsLessThanEqual(int superiorLimit);
+    List<Advertisement> findByRelevantFalse();
 }

@@ -50,6 +50,7 @@ public class ScoreComputingServiceImpl implements ScoreComputingService {
             }
 
             currentAd.balanceScore();
+            advertisements.save(currentAd);
         }
     }
 

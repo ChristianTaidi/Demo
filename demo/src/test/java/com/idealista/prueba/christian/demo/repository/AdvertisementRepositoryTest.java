@@ -23,38 +23,42 @@ public class AdvertisementRepositoryTest {
     }
 
     @Test
-    public void test_findByScoreLessThanEqual_found(){
+    public void test_findByNotRelevant_found(){
         Advertisement newAdd= new Advertisement("DescriptionTEst");
-        newAdd.addScore(40);
+        newAdd.addScore(30);
+        newAdd.balanceScore();
         adsTest.save(newAdd);
 
-        Assertions.assertThat(adsTest.findAdvertisementByScoreIsLessThanEqual(50).contains(newAdd));
+        Assertions.assertThat(adsTest.findByRelevantFalse().contains(newAdd));
     }
 
     @Test
-    public void test_findByScoreLessThan_not_found(){
+    public void test_findByNotRelevant_not_found(){
         Advertisement newAdd= new Advertisement("DescriptionTest");
-        newAdd.addScore(60);
+        newAdd.addScore(45);
+        newAdd.balanceScore();
         adsTest.save(newAdd);
 
-        Assertions.assertThat(!(adsTest.findAdvertisementByScoreIsLessThanEqual(50).contains(newAdd)));
+        Assertions.assertThat(!adsTest.findByRelevantFalse().contains(newAdd));
 
     }
 
     @Test
-    public void test_findByScoreGreaterThan_found(){
+    public void test_findRelevant_found(){
         Advertisement newAdd = new Advertisement("DescriptionTest");
         newAdd.addScore(80);
+        newAdd.balanceScore();
         adsTest.save(newAdd);
-        Assertions.assertThat(adsTest.findAdvertisementByScoreGreaterThanEqual(70).contains(newAdd));
+        Assertions.assertThat(adsTest.findByRelevantTrue().contains(newAdd));
     }
 
     @Test
-    public void test_findByScoreGreaterThan_not_found(){
+    public void test_findRelevant_not_found(){
         Advertisement newAdd = new Advertisement("DescriptionTest");
-        newAdd.addScore(60);
+        newAdd.addScore(30);
+        newAdd.balanceScore();
         adsTest.save(newAdd);
-        Assertions.assertThat(!adsTest.findAdvertisementByScoreGreaterThanEqual(70).contains(newAdd));
+        Assertions.assertThat(!adsTest.findByRelevantTrue().contains(newAdd));
 
     }
 

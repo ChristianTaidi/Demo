@@ -15,7 +15,6 @@ import java.util.List;
 @Controller
 public class QualityManagerController {
 
-    private static final int ADVERTISEMENT_NOT_RELEVANT=40;
 
     @Autowired
     ScoreComputingService computingService;
@@ -28,7 +27,7 @@ public class QualityManagerController {
     @RequestMapping(value = "/advertisements/quality", method = RequestMethod.GET)
     public @ResponseBody List<Advertisement> getNotRelevant(){
         computingService.computeAll();
-        List<Advertisement> ads=sortService.getScoresLessThan(ADVERTISEMENT_NOT_RELEVANT);
+        List<Advertisement> ads=sortService.getNotRelevantAds();
         ads.sort(comparator);
         return ads;
     }

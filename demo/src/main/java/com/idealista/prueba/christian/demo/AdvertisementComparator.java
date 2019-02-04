@@ -12,9 +12,9 @@ public class AdvertisementComparator implements Comparator {
         Advertisement add2 = (Advertisement) o2;
 
         if (add1.getScore() > add2.getScore()){
-            return 1;
-        }else if(add1.getScore()< add2.getScore()) {
             return -1;
+        }else if(add1.getScore()< add2.getScore()) {
+            return 1;
         }else{
             return 0;
         }

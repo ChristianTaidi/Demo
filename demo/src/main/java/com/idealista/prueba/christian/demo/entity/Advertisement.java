@@ -10,11 +10,8 @@ import java.util.List;
 @Table(name = "advertisement")
 public class Advertisement{
 
-    /**
-     * Constants used to represent how may points are added depending on the pictures of the ad
-     */
 
-
+    private static final int RELEVANT_SCORE_LIMIT = 40;
 
     @Id
     @Column(name = "ad_id")
@@ -38,6 +35,9 @@ public class Advertisement{
 
     @Column(name = "dateNotRelevant")
     private Date dateNotRelevant;
+
+    @Column(name = "relevant")
+    private boolean relevant = true;
 
 
     private int score;
@@ -111,8 +111,9 @@ public class Advertisement{
         if(this.score>100){
             this.score=100;
         }
-        if(this.score<40){
+        if(this.score<RELEVANT_SCORE_LIMIT){
             dateNotRelevant= new Date();
+            this.relevant= false;
         }
     }
 }
